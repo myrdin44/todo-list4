@@ -5,6 +5,7 @@ import org.example.todolist.security.JwtService;
 import org.example.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,13 +25,15 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password) {
-        User user = userService.findByUsername(username);
+        UserDetails userDetails = userService.findByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
-            return "Token generated: " + jwtService.generateToken(user);
+        if (userDetails != null && userDetails.getPassword().equals(password)) {
+            return "Token generated: " + jwtService.generateToken(userDetails);
         }
 
         return "Invalid username or password!";
     }
+
+
 
 }

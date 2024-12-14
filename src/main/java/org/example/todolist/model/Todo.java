@@ -1,11 +1,6 @@
 package org.example.todolist.model;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.time.Duration;
-import java.time.Period;
-import java.time.Instant;
-import jakarta.annotation.Generated;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +15,11 @@ public class Todo {
     private ZonedDateTime createdAt;
     private boolean completed;
     private boolean important;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 
 
     public long getTodoId() {

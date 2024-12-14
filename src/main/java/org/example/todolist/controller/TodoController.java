@@ -13,7 +13,7 @@ public class TodoController {
     @Autowired
     private IMService imService;
 
-    //test
+    //test db
     @GetMapping("/test-connection")
     public String test(){
         return "Database connected successfully!";

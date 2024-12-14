@@ -2,24 +2,39 @@ package org.example.todolist.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "user_db")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "id")
+    private long userId;
 
     private String username;
     private String email;
     private String password;
     private String role;
 
-    public long getId() {
-        return id;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Todo> tasks = new ArrayList<>();
+
+    public List<Todo> getTasks() {
+        return tasks;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTasks(List<Todo> tasks) {
+        this.tasks = tasks;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long id) {
+        this.userId = id;
     }
 
     public String getUsername() {

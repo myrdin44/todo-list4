@@ -25,4 +25,7 @@ public interface IMService {
 
     //hien thi 1 task bang id
     public Todo getATask(long id);
+
+    //hien thi tat ca tasks cua 1 user bang user id
+    public  List<Todo> getAllTaksByUserId(long userId);
 }

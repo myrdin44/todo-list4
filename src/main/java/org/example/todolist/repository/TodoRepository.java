@@ -15,5 +15,6 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
     @Query("SELECT td FROM Todo td WHERE td.todoId = :todoId")
     Todo findByTodoId(@Param("todoId") String id);
 
-    List<Todo> findByUser(User user);
+    @Query("SELECT t FROM Todo t WHERE t.user.userId = :userId")
+    List<Todo> findByUserId(@Param("userId") long userId);
 }

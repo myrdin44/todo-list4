@@ -83,4 +83,9 @@ public class TodoService implements IMService{
         Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("Task not found!"));
         return todo;
     }
+
+    @Override
+    public List<Todo> getAllTaksByUserId(long userId) {
+        return todoRepository.findByUserId(userId);
+    }
 }

@@ -3,6 +3,7 @@ package org.example.todolist.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -13,7 +14,9 @@ import java.util.Date;
 
 @Service
 public class JwtService {
-        private final String secretKey = "2852012passwordLaMatkhauMatkhauLaPasswordVanChuaDu256bitaaaaaaa";
+
+    @Value("${jwt.secret}")
+    private String secretKey;
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()

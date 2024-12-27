@@ -1,10 +1,8 @@
 package org.example.todolist.controller;
-
 import org.example.todolist.model.User;
 import org.example.todolist.security.JwtService;
 import org.example.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +32,7 @@ public class UserController {
         return "Invalid username or password!";
     }
 
+    //test view
 
 
 }

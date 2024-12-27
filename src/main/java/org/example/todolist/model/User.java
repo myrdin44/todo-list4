@@ -17,6 +17,51 @@ public class User {
     private String email;
     private String password;
     private String role;
+    private String fullName;
+    private String phone;
+    private String falcultyOrDepartment;
+    private Boolean status;
+    private String degreeName;
+
+    public String getDegreeName() {
+        return degreeName;
+    }
+
+    public void setDegreeName(String degreeName) {
+        this.degreeName = degreeName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getFalcultyOrDepartment() {
+        return falcultyOrDepartment;
+    }
+
+    public void setFalcultyOrDepartment(String falcultyOrDepartment) {
+        this.falcultyOrDepartment = falcultyOrDepartment;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Todo> tasks = new ArrayList<>();

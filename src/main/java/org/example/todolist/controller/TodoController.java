@@ -5,7 +5,6 @@ import org.example.todolist.service.IMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
 import java.util.List;
 
 @RestController
@@ -62,8 +61,12 @@ public class TodoController {
         return imService.getATask(id);
     }
 
+    //get all task by UserId
     @GetMapping("/get-all-user-task/{userId}")
     public List<Todo> getAllTasksByUserId(@PathVariable("userId") long userId) {
         return imService.getAllTaksByUserId(userId);
     }
+
+    //test view
+
 }

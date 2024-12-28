@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IMService {
     //them task moi
-    public Todo addTask(Todo newTask);
+    public Todo addTask(Todo newTask, Long userId);
 
     //sua task
     public Todo updateTask(long id, Todo todo);

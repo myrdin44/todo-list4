@@ -1,6 +1,8 @@
 package org.example.todolist.model;
 
 import java.time.ZonedDateTime;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,9 +18,29 @@ public class Todo {
     private boolean completed;
     private boolean important;
 
+    public Todo(String title, String description, ZonedDateTime createdAt, boolean completed, boolean important, User user) {
+        this.title = title;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.completed = completed;
+        this.important = important;
+        this.user = user;
+    }
+
+    public Todo() {}
+
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = true)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public long getTodoId() {
         return todoId;

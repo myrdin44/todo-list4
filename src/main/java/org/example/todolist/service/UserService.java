@@ -17,6 +17,11 @@ public class UserService {
         return new CustomUserDetails(user);
     }
 
+    public UserDetails findByUserId(Long userId) {
+        User user = userRepository.findByUserId(userId);
+        return new CustomUserDetails(user);
+    }
+
     public  User save(User user) {
         return userRepository.save(user);
     }

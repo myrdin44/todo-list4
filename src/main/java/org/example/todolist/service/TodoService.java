@@ -1,7 +1,9 @@
 package org.example.todolist.service;
 
 import org.example.todolist.model.Todo;
+import org.example.todolist.model.User;
 import org.example.todolist.repository.TodoRepository;
+import org.example.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,18 @@ public class TodoService implements IMService{
     @Autowired
     private TodoRepository todoRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
 
     @Override
-    public Todo addTask(Todo newTask) {
+    public Todo addTask(Todo newTask, Long userId) {
+        User user = userRepository.findByUserId(userId);
+        if (user == null) {
+            throw new RuntimeException("User not found with id " + userId);
+        }
         if(newTask != null) {
+            newTask.setUser(user);
             return todoRepository.save(newTask);
         }
         return null;

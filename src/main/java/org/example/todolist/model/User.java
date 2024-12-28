@@ -1,5 +1,6 @@
 package org.example.todolist.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -22,6 +23,25 @@ public class User {
     private String falcultyOrDepartment;
     private Boolean status;
     private String degreeName;
+
+    public User(Long userId, String username, String email, String password, String role, String fullName, String phone, String falcultyOrDepartment, boolean status, String degreeName) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.falcultyOrDepartment = falcultyOrDepartment;
+        this.status = status;
+        this.degreeName = degreeName;
+    }
+
+    public User() {}
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Todo> tasks = new ArrayList<>();
 
     public String getDegreeName() {
         return degreeName;
@@ -63,8 +83,6 @@ public class User {
         this.status = status;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Todo> tasks = new ArrayList<>();
 
     public List<Todo> getTasks() {
         return tasks;

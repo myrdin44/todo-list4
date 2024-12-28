@@ -21,8 +21,8 @@ public class TodoController {
 
     //API them task moi
     @PostMapping("/add")
-    public Todo addTask(@RequestBody Todo newTask) {
-        return imService.addTask(newTask);
+    public Todo addTask(@RequestBody Todo newTask, @RequestParam("userId") long userId) {
+        return imService.addTask(newTask, userId);
     }
 
     //API update task bang id

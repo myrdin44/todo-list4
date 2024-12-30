@@ -1,0 +1,7 @@
+org\example\todolist\model\UserTest.class
+org\example\todolist\rest_controller\UserControllerTest.class
+org\example\todolist\TodoListApplicationTests.class
+org\example\todolist\rest_controller\TodoControllerTest.class
+org\example\todolist\service\TodoServiceTest.class
+org\example\todolist\service\UserServiceTest.class
+org\example\todolist\model\TodoTest.class

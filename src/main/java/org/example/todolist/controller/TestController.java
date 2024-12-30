@@ -5,11 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/secure")
+@RequestMapping("/test-possible-deployment")
 public class TestController {
 
-    @GetMapping("/test")
+    @GetMapping("/is-deploy")
     public ResponseEntity<String> testSecureEndpoint() {
-        return ResponseEntity.ok("Secure endpoint accessed successfully");
+        return ResponseEntity.ok("Deploy succesfully!s");
     }
 }

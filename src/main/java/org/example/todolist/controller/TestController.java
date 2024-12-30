@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/test-possible-deployment")
 public class TestController {
 
-    @GetMapping("/is-deploy")
+    @GetMapping("/is-deployed")
     public ResponseEntity<String> testSecureEndpoint() {
         return ResponseEntity.ok("Deploy succesfully!s");
     }

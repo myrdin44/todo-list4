@@ -18,9 +18,12 @@ public class JwtTokenFilter extends GenericFilterBean {
         this.jwtService = jwtService;
     }
 
+
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+
 
         //lay token tu header Auuthorization
         String authHeader = httpRequest.getHeader("Authorization");

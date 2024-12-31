@@ -8,7 +8,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:hXAsxzOiuMkSSfIpJHMPUeZOPrjhiYSz@postgres.railway.internal:5432/railway
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres.railway.internal:5432/railway
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=hXAsxzOiuMkSSfIpJHMPUeZOPrjhiYSz
     depends_on:

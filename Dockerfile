@@ -8,4 +8,4 @@ WORKDIR /app
 COPY target/TodoList-0.0.1-SNAPSHOT.jar /app/TodoList-0.0.1-SNAPSHOT.jar
 
 # Chạy ứng dụng Spring Boot
-ENTRYPOINT ["/wait-for-it.sh", "db:5432", "--", "java", "-jar", "TodoList-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "TodoList-0.0.1-SNAPSHOT.jar"]

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -24,6 +26,43 @@ public class UserService {
 
     public  User save(User user) {
         return userRepository.save(user);
+    }
+
+    public boolean deleteUser(Long userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            return true;
+        }
+
+        return false;
+    }
+
+    public User updateUser(long userId, User newUser) {
+        if (userRepository.existsById(userId)) {
+            User user = userRepository.findById(userId).orElse(null);
+            user.setUsername(newUser.getUsername());
+            user.setPassword(newUser.getPassword());
+            user.setEmail(newUser.getEmail());
+            user.setFullName(newUser.getFullName());
+            user.setPhone(newUser.getPhone());
+            user.setRole(newUser.getRole());
+            user.setFalcultyOrDepartment(newUser.getFalcultyOrDepartment());
+            user.setSubject(newUser.getSubject());
+            user.setSystemLevel(newUser.getSystemLevel());
+            user.setStatus(newUser.getStatus());
+            user.setDegreeName(newUser.getDegreeName());
+
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    public List<User> getUserByFalcultyOrDepartment(String department) {
+        return userRepository.findByFalcultyOrDepartment(department);
     }
 
 }

@@ -10,6 +10,6 @@ public class TestController {
 
     @GetMapping("/is-deployed")
     public ResponseEntity<String> testSecureEndpoint() {
-        return ResponseEntity.ok("Deploy succesfully!s");
+        return ResponseEntity.ok("Possible deployment!");
     }
 }

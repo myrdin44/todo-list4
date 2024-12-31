@@ -23,8 +23,12 @@ public class User {
     private String falcultyOrDepartment;
     private Boolean status;
     private String degreeName;
+    private String subject; //doi tuong
 
-    public User(Long userId, String username, String email, String password, String role, String fullName, String phone, String falcultyOrDepartment, boolean status, String degreeName) {
+    @Column(name = "system_level", nullable = true)
+    private int systemLevel;
+
+    public User(Long userId, String username, String email, String password, String role, String fullName, String phone, String falcultyOrDepartment, boolean status, String degreeName, String subject, int systemLevel) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -35,6 +39,8 @@ public class User {
         this.falcultyOrDepartment = falcultyOrDepartment;
         this.status = status;
         this.degreeName = degreeName;
+        this.subject = subject;
+        this.systemLevel = systemLevel;
     }
 
     public User() {}
@@ -49,6 +55,22 @@ public class User {
 
     public void setDegreeName(String degreeName) {
         this.degreeName = degreeName;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public int getSystemLevel() {
+        return systemLevel;
+    }
+
+    public void setSystemLevel(int systemLevel) {
+        this.systemLevel = systemLevel;
     }
 
     public String getFullName() {

@@ -8,6 +8,7 @@ org\example\todolist\service\UserService.class
 org\example\todolist\service\IMService.class
 org\example\todolist\repository\TodoRepository.class
 org\example\todolist\model\Todo.class
+org\example\todolist\controller\AuthController.class
 org\example\todolist\security\CustomUserDetails.class
 org\example\todolist\config\SecurityConfig.class
 org\example\todolist\controller\TestController.class

@@ -6,36 +6,18 @@ import org.example.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/operate")
 public class UserController {
     @Autowired
     private UserService userService;
 
     @Autowired
     private JwtService jwtService;
-
-    @PostMapping("/register")
-    public String createUser(@RequestBody User user) {
-        userService.save(user);
-        return "User created successfully!";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
-        UserDetails userDetails = userService.findByUsername(username);
-
-        if (userDetails != null && userDetails.getPassword().equals(password)) {
-            return "Token generated: " + jwtService.generateToken(userDetails);
-        }
-
-        return "Invalid username or password!";
-    }
 
     @DeleteMapping("/delete/{userId}")
     public boolean deleteUser(@PathVariable("userId") long userId) {

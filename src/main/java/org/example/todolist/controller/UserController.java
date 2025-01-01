@@ -72,4 +72,9 @@ public class UserController {
         return userService.getUserByFalcultyOrDepartment(faculty);
     }
 
+    @GetMapping("/get-all-user")
+    public List<User> getAllUser() {
+        return userService.getAllUsers();
+    }
+
 }

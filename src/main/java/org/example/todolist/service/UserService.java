@@ -65,4 +65,8 @@ public class UserService {
         return userRepository.findByFalcultyOrDepartment(department);
     }
 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
 }

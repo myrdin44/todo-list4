@@ -23,7 +23,8 @@ public class SecurityConfig {
         /* http.csrf((csrf) -> csrf.disable()) */
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("auth/register").permitAll()
                         .requestMatchers("/test-possible-deployment/is-deployed").permitAll()
                 .anyRequest().authenticated())
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

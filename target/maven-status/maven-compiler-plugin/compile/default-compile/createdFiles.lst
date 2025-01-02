@@ -4,6 +4,7 @@ org\example\todolist\service\TodoService.class
 org\example\todolist\security\JwtException.class
 org\example\todolist\TodoListApplication.class
 org\example\todolist\repository\UserRepository.class
+org\example\todolist\config\WebConfig.class
 org\example\todolist\service\UserService.class
 org\example\todolist\service\IMService.class
 org\example\todolist\repository\TodoRepository.class

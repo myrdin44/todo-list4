@@ -11,6 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**") // ap dung cho tat ca endpoint
         .allowedOrigins("http://localhost:5173") //set port duoc cho phep
         .allowCredentials(true) // cho phep gui credentials
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS"); //them nhuwng HTTP method duoc phep su dung
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") //them nhuwng HTTP method duoc phep su dung
+                .allowedHeaders("Authorization", "Content-Type");
     }
 }

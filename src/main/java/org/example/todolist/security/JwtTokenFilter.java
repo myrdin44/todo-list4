@@ -3,6 +3,7 @@ package org.example.todolist.security;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ public class JwtTokenFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
 
 
         //lay token tu header Auuthorization
@@ -43,7 +45,12 @@ public class JwtTokenFilter extends GenericFilterBean {
                 }
             }
         } catch (JwtException e) {
-            logger.error("JWT validation failed: {}");
+            logger.error("JWT validation failed: {}" + e.getMessage());
+
+            // Trả về lỗi 401 Unauthorized
+            httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            httpResponse.getWriter().write("Unauthorized: " + e.getMessage());
+            return; // Kết thúc xử lý, không tiếp tục chuỗi filter
         }
 
         //tiep tuc chuoi filter

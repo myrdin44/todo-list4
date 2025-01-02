@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -30,6 +32,26 @@ public class SecurityConfig {
                 .anyRequest().authenticated())
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
+    }
+
+
+    @Bean
+    public UrlBasedCorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("http://localhost:5173"); // Allow frontend URL
+        corsConfiguration.addAllowedMethod("GET"); // Allow GET method
+        corsConfiguration.addAllowedMethod("POST"); // Allow POST method
+        corsConfiguration.addAllowedMethod("PUT"); // Allow PUT method
+        corsConfiguration.addAllowedMethod("DELETE"); // Allow DELETE method
+        corsConfiguration.addAllowedMethod("OPTIONS"); // Allow OPTIONS method
+        corsConfiguration.addAllowedHeader("Authorization"); // Allow Authorization header
+        corsConfiguration.addAllowedHeader("Content-Type"); // Allow Content-Type header
+        corsConfiguration.setAllowCredentials(true); // Allow credentials (cookies, authorization headers, etc.)
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration); // Apply CORS config for all endpoints
+
+        return source;
     }
 
     //to encoder password

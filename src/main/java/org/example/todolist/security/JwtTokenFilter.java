@@ -35,22 +35,23 @@ public class JwtTokenFilter extends GenericFilterBean {
             jwtToken = authHeader.substring(7); //bo "Bearer " de lay token
         }
 
+        logger.info("Authorization Header: {}"+ authHeader);
+        logger.info("JWT Token: {}"+ jwtToken);
+
+
         //check null cua jwtToken va kiem tra hop le
         try {
             if (jwtToken != null && jwtService.isTokenValid(jwtToken)) {
-                String username = jwtService.extractUsername(jwtToken);
+//                String username = jwtService.extractUsername(jwtToken);
                 Authentication auth = jwtService.getAuthentication(jwtToken);
                 if (auth != null) {
                     SecurityContextHolder.getContext().setAuthentication(auth);
+
                 }
             }
         } catch (JwtException e) {
             logger.error("JWT validation failed: {}" + e.getMessage());
-
-            // Trả về lỗi 401 Unauthorized
-            httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            httpResponse.getWriter().write("Unauthorized: " + e.getMessage());
-            return; // Kết thúc xử lý, không tiếp tục chuỗi filter
+            SecurityContextHolder.clearContext(); // Đảm bảo không để lại trạng thái xác thực
         }
 
         //tiep tuc chuoi filter

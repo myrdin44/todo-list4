@@ -2,6 +2,7 @@ package org.example.todolist.config;
 import org.example.todolist.security.JwtTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -25,6 +26,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/test-possible-deployment/is-deployed").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // cho phep cac yeu cau voi HTTP OPTIONS truy cap khong xac thuc
                 .anyRequest().authenticated())
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

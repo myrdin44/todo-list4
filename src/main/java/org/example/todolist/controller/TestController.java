@@ -1,6 +1,8 @@
 package org.example.todolist.controller;
 
-import org.example.todolist.model.User;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +12,18 @@ public class TestController {
 
     @GetMapping("/is-deployed")
     public ResponseEntity<String> testSecureEndpoint() {
-        return ResponseEntity.ok("Possible deployment!");
+        String htmlContent = """
+                <html>
+                <body style="text-align:center; margin-top: 50px;">
+                    <h1 style="color: red; font-weight: bold;">Possible Deployment!</h1>
+                </body>
+                </html>
+                """;
+
+        // Cấu hình header để trình duyệt hiểu đây là HTML
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_HTML);
+
+        return new ResponseEntity<>(htmlContent, headers, HttpStatus.OK);
     }
 }

@@ -20,7 +20,7 @@ public class TestController {
                 </html>
                 """;
 
-        // Cấu hình header để trình duyệt hiểu đây là HTML
+        // Cau hinh headers de trinh duyet hieu day laf html
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_HTML);
 

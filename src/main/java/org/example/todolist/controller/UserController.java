@@ -24,7 +24,7 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
-    @PostMapping("/update-user")
+    @PutMapping("/update-user")
     public User updateUser(@RequestParam long userId, @RequestBody User newUser) {
         return userService.updateUser(userId, newUser);
     }

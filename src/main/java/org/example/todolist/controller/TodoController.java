@@ -26,7 +26,7 @@ public class TodoController {
     }
 
     //API update task bang id
-    @PostMapping("/update")
+    @PutMapping("/update")
     public Todo updateTask(@RequestParam("id") long id,@RequestBody Todo todo) {
         return imService.updateTask(id, todo);
     }

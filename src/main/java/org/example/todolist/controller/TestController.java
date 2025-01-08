@@ -15,7 +15,7 @@ public class TestController {
         String htmlContent = """
                 <html>
                 <body style="text-align:center; margin-top: 50px;">
-                    <h1 style="color: red; font-weight: bold;">Possible Deployment!</h1>
+                    <h1 style="color: green; font-weight: bold;">Possible Deployment!</h1>
                 </body>
                 </html>
                 """;

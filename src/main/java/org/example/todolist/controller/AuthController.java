@@ -4,6 +4,7 @@ import org.example.todolist.model.User;
 import org.example.todolist.security.JwtService;
 import org.example.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,13 +25,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String userName, @RequestParam String password) {
+    public ResponseEntity<?> login(@RequestParam String userName, @RequestParam String password) {
         UserDetails userDetails = userService.findByUsername(userName);
 
         if(userDetails != null && userDetails.getPassword().equals(password)) {
-            return "Token generated: " + jwtService.generateToken(userDetails);
+            return ResponseEntity.ok("Token generated: " + jwtService.generateToken(userDetails));
         }
 
-        return "Invalid username or password!";
+        return ResponseEntity.ok("Invalid username or password");
     }
 }

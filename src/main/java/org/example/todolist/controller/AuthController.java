@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -25,7 +27,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String userName, @RequestParam String password) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
+        String userName = body.get("userName");
+        String password = body.get("password");
         UserDetails userDetails = userService.findByUsername(userName);
 
         if(userDetails != null && userDetails.getPassword().equals(password)) {

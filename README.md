@@ -11,11 +11,11 @@
 - Xóa task đã 🗑️
 
 ## 3.Cách cài đặt 📥
-* >>> Clone repository này về máy tính cá nhân của bạn.
-* >>> git clone https://github.com/myrdin44/todo-list4/
-* >>> cd todo-list4
+* >> Clone repository này về máy tính cá nhân của bạn.
+* >> git clone https://github.com/myrdin44/todo-list4/
+* >> cd todo-list4
 
 ## 4.Công nghệ sử dụng 🌐
-* Frontend : ...
+* Frontend : ReactJs, 
 * Backend: Java Spring Boot, JPA Data, PosgreSQL...
-* Kiểm thử: Postman,...
+* Kiểm thử: Postman, Mockito,.

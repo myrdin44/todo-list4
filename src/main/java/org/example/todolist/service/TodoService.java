@@ -33,16 +33,15 @@ public class TodoService implements IMService{
 
     @Override
     public Todo updateTask(long id, Todo todo) {
-        if(todo != null) {
+        if(userRepository.existsById(id)) {
             Todo todo1 = todoRepository.getById(id);
-            if(todo1 != null) {
-                todo1.setCompleted(todo.isCompleted());
-                todo1.setDescription(todo.getDescription());
-                todo1.setCreatedAt(todo.getCreatedAt());
-                todo1.setImportant(todo.isImportant());
-                todo1.setTitle(todo.getTitle());
-                return todo1;
-            }
+
+            todo1.setCompleted(todo.isCompleted());
+            todo1.setDescription(todo.getDescription());
+            todo1.setCreatedAt(todo.getCreatedAt());
+            todo1.setImportant(todo.isImportant());
+            todo1.setTitle(todo.getTitle());
+            return todo1;
         }
         return null;
     }
@@ -51,10 +50,8 @@ public class TodoService implements IMService{
     public boolean deleteTask(long id) {
         if(id > 0) {
             Todo todo = todoRepository.getById(id);
-            if(todo != null) {
-                todoRepository.delete(todo);
-                return true;
-            }
+            todoRepository.delete(todo);
+            return true;
         }
         return false;
     }
@@ -63,10 +60,9 @@ public class TodoService implements IMService{
     public boolean markAsImportant(long id) {
         if (id > 0) {
             Todo todo = todoRepository.getById(id);
-            if (todo != null) {
-                todo.setImportant(true);
-                return true;
-            }
+
+            todo.setImportant(true);
+            return true;
         }
         return false;
     }
@@ -75,10 +71,9 @@ public class TodoService implements IMService{
     public boolean markAsComplete(long id) {
         if(id > 0) {
             Todo todo = todoRepository.getById(id);
-            if(todo != null) {
-                todo.setCompleted(true);
-                return true;
-            }
+
+            todo.setCompleted(true);
+            return true;
         }
         return false;
     }

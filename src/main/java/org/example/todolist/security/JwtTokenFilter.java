@@ -33,8 +33,8 @@ public class JwtTokenFilter extends GenericFilterBean {
             jwtToken = authHeader.substring(7); //bo "Bearer " de lay token
         }
 
-        logger.info("Authorization Header: {}"+ authHeader);
-        logger.info("JWT Token: {}"+ jwtToken);
+        logger.info("Authorization Header:"+ authHeader);
+        logger.info("JWT Token:{"+ jwtToken + "}");
 
 
         //check null cua jwtToken va kiem tra hop le
@@ -48,7 +48,7 @@ public class JwtTokenFilter extends GenericFilterBean {
                 }
             }
         } catch (JwtException e) {
-            logger.error("JWT validation failed: {}" + e.getMessage());
+            logger.error("JWT validation failed: " + e.getMessage());
             SecurityContextHolder.clearContext(); // Đảm bảo không để lại trạng thái xác thực
         }
 

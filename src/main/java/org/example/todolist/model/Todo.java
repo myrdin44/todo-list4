@@ -4,6 +4,7 @@ import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "todo_list")
@@ -12,10 +13,15 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long todoId;
 
+    @NotBlank(message = "Title must not be blank!")
     private String title;
+
     private String description;
+
     private ZonedDateTime createdAt;
+
     private boolean completed;
+
     private boolean important;
 
     public Todo(String title, String description, ZonedDateTime createdAt, boolean completed, boolean important, User user) {

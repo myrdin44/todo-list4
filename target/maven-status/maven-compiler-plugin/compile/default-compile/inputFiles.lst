@@ -4,6 +4,9 @@ F:\Inteliji\TodoList\src\main\java\org\example\todolist\controller\AuthControlle
 F:\Inteliji\TodoList\src\main\java\org\example\todolist\controller\TestController.java
 F:\Inteliji\TodoList\src\main\java\org\example\todolist\controller\TodoController.java
 F:\Inteliji\TodoList\src\main\java\org\example\todolist\controller\UserController.java
+F:\Inteliji\TodoList\src\main\java\org\example\todolist\Enum\DegreeName.java
+F:\Inteliji\TodoList\src\main\java\org\example\todolist\Enum\FacultyOrDepartment.java
+F:\Inteliji\TodoList\src\main\java\org\example\todolist\exception\GlobalExceptionHandle.java
 F:\Inteliji\TodoList\src\main\java\org\example\todolist\model\Todo.java
 F:\Inteliji\TodoList\src\main\java\org\example\todolist\model\User.java
 F:\Inteliji\TodoList\src\main\java\org\example\todolist\repository\TodoRepository.java

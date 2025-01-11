@@ -2,6 +2,10 @@ package org.example.todolist.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import org.example.todolist.Enum.DegreeName;
+import org.example.todolist.Enum.FacultyOrDepartment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +18,39 @@ public class User {
     @Column(name = "id")
     private long userId;
 
+    @NotBlank(message = "Username must not be blank!")
     private String username;
+
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,}$", message = "Invalid email!")
+    @NotBlank(message = "Email must not be blank!")
     private String email;
+
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[@$!%*?&])[A-Za-z\\\\d@$!%*?&]{8,20}$", message = "Password must have 8-20 characters, Include uppercase, lowercase letters, digits and special characters!")
+    @NotBlank(message = "Password must not be blank!")
     private String password;
+
     private String role;
+
     private String fullName;
+
+    @Pattern(regexp = "^(0|\\+84)[3-9][0-9]{8}$", message = "Invalid phone!")
+    @NotBlank(message = "Phone must not be blank!")
     private String phone;
-    private String falcultyOrDepartment;
+
+    @Enumerated(EnumType.STRING)
+    private FacultyOrDepartment facultyOrDepartment;
+
     private Boolean status;
-    private String degreeName;
+
+    @Enumerated(EnumType.STRING)
+    private DegreeName degreeName;
+
     private String subject; //doi tuong
 
-    @Column(name = "system_level", nullable = true)
+    @Column(name = "system_level", nullable = false)
     private int systemLevel;
 
-    public User(Long userId, String username, String email, String password, String role, String fullName, String phone, String falcultyOrDepartment, boolean status, String degreeName, String subject, int systemLevel) {
+    public User(Long userId, String username, String email, String password, String role, String fullName, String phone, FacultyOrDepartment facultyOrDepartment, boolean status, DegreeName degreeName, String subject, int systemLevel) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -36,7 +58,7 @@ public class User {
         this.role = role;
         this.fullName = fullName;
         this.phone = phone;
-        this.falcultyOrDepartment = falcultyOrDepartment;
+        this.facultyOrDepartment = facultyOrDepartment;
         this.status = status;
         this.degreeName = degreeName;
         this.subject = subject;
@@ -49,11 +71,11 @@ public class User {
     @JsonManagedReference
     private List<Todo> tasks = new ArrayList<>();
 
-    public String getDegreeName() {
+    public DegreeName getDegreeName() {
         return degreeName;
     }
 
-    public void setDegreeName(String degreeName) {
+    public void setDegreeName(DegreeName degreeName) {
         this.degreeName = degreeName;
     }
 
@@ -89,12 +111,12 @@ public class User {
         this.phone = phone;
     }
 
-    public String getFalcultyOrDepartment() {
-        return falcultyOrDepartment;
+    public FacultyOrDepartment getFacultyOrDepartment() {
+        return facultyOrDepartment;
     }
 
-    public void setFalcultyOrDepartment(String falcultyOrDepartment) {
-        this.falcultyOrDepartment = falcultyOrDepartment;
+    public void setFacultyOrDepartment(FacultyOrDepartment facultyOrDepartment) {
+        this.facultyOrDepartment = facultyOrDepartment;
     }
 
     public Boolean getStatus() {

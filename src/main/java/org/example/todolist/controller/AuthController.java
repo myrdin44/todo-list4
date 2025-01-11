@@ -1,5 +1,6 @@
 package org.example.todolist.controller;
 
+import jakarta.validation.Valid;
 import org.example.todolist.model.User;
 import org.example.todolist.security.JwtService;
 import org.example.todolist.service.UserService;
@@ -21,13 +22,13 @@ public class AuthController {
     private JwtService jwtService;
 
     @PostMapping("/register")
-    public String createUser(@RequestBody User user) {
+    public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
         userService.save(user);
-        return "Registered Successfully!";
+        return ResponseEntity.ok("User registered successfully");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
+    public ResponseEntity<?> login(@Valid @RequestBody Map<String, String> credentials) {
         String userName = credentials.get("userName");
         String password = credentials.get("password");
         UserDetails userDetails = userService.findByUsername(userName);

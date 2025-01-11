@@ -1,5 +1,6 @@
 package org.example.todolist.controller;
 
+import jakarta.validation.Valid;
 import org.example.todolist.model.Todo;
 import org.example.todolist.service.IMService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,13 @@ public class TodoController {
 
     //API them task moi
     @PostMapping("/add")
-    public Todo addTask(@RequestBody Todo newTask, @RequestParam("userId") long userId) {
+    public Todo addTask(@Valid @RequestBody Todo newTask, @RequestParam("userId") long userId) {
         return imService.addTask(newTask, userId);
     }
 
     //API update task bang id
     @PutMapping("/update")
-    public Todo updateTask(@RequestParam("id") long id,@RequestBody Todo todo) {
+    public Todo updateTask(@RequestParam("id") long id,@Valid @RequestBody Todo todo) {
         return imService.updateTask(id, todo);
     }
 
@@ -66,7 +67,4 @@ public class TodoController {
     public List<Todo> getAllTasksByUserId(@PathVariable("userId") long userId) {
         return imService.getAllTaksByUserId(userId);
     }
-
-    //test view
-
 }

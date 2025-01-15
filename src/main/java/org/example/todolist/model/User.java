@@ -21,11 +21,11 @@ public class User {
     @NotBlank(message = "Username must not be blank!")
     private String username;
 
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,}$", message = "Invalid email!")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Invalid email!")
     @NotBlank(message = "Email must not be blank!")
     private String email;
 
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[@$!%*?&])[A-Za-z\\\\d@$!%*?&]{8,20}$", message = "Password must have 8-20 characters, Include uppercase, lowercase letters, digits and special characters!")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$", message = "Password must have 8-20 characters, Include uppercase, lowercase letters, digits and special characters!")
     @NotBlank(message = "Password must not be blank!")
     private String password;
 

@@ -24,7 +24,8 @@ public class Todo {
 
     private boolean important;
 
-    public Todo(String title, String description, ZonedDateTime createdAt, boolean completed, boolean important, User user) {
+    public Todo(Long todoId, String title, String description, ZonedDateTime createdAt, boolean completed, boolean important, User user) {
+        this.todoId = todoId;
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;

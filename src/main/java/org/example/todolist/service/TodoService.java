@@ -34,7 +34,7 @@ public class TodoService implements IMService{
     @Override
     public Todo updateTask(long id, Todo todo) {
         if(userRepository.existsById(id)) {
-            Todo todo1 = todoRepository.getById(id);
+            Todo todo1 = todoRepository.getById(todo.getTodoId());
 
             todo1.setCompleted(todo.isCompleted());
             todo1.setDescription(todo.getDescription());
@@ -49,8 +49,7 @@ public class TodoService implements IMService{
     @Override
     public boolean deleteTask(long id) {
         if(id > 0) {
-            Todo todo = todoRepository.getById(id);
-            todoRepository.delete(todo);
+            todoRepository.deleteById(id);
             return true;
         }
         return false;

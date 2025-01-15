@@ -13,7 +13,7 @@ import java.util.List;
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     @Query("SELECT td FROM Todo td WHERE td.todoId = :todoId")
-    Todo findByTodoId(@Param("todoId") String id);
+    Todo findByTodoId(@Param("todoId") long id);
 
     @Query("SELECT t FROM Todo t WHERE t.user.userId = :userId")
     List<Todo> findByUserId(@Param("userId") long userId);

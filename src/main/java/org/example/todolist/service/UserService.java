@@ -1,5 +1,6 @@
 package org.example.todolist.service;
 
+import org.example.todolist.Enum.DegreeName;
 import org.example.todolist.Enum.FacultyOrDepartment;
 import org.example.todolist.model.User;
 import org.example.todolist.repository.UserRepository;
@@ -77,12 +78,13 @@ public class UserService {
     }
     //get degree name list
     public List<String> getDegreeList() {
-        return Arrays.stream(FacultyOrDepartment.values()).map(Enum::toString).collect(Collectors.toList());
+        return Arrays.stream(DegreeName.values()).map(Enum::toString).collect(Collectors.toList());
     }
 
     //get an user by user id
     public User getUserById(Long userId) {
-        return userRepository.findById(userId).orElse(null);
+        return userRepository.findById(userId).orElseThrow(
+                () -> new RuntimeException("User not found with id " + userId));
     }
 
     //filter users by their faculty

@@ -3,6 +3,7 @@ package org.example.todolist.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.example.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,8 +16,13 @@ import java.util.Date;
 @Service
 public class JwtService {
 
+    private final UserRepository userRepository;
     @Value("${jwt.secret}")
     private String secretKey;
+
+    public JwtService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
@@ -67,7 +73,16 @@ public class JwtService {
     }
 
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = getUserDetails(token);
-        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        Claims claims = extractClaim(token);
+        String username = claims.getSubject();
+
+        org.example.todolist.model.User user = userRepository.findByUsername(username);
+
+        if (user != null) {
+            CustomUserDetails customUserDetails = new CustomUserDetails(user);
+
+            return new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
+        }
+        return null;
     }
 }

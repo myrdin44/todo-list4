@@ -44,12 +44,16 @@ public class JwtTokenFilter extends GenericFilterBean {
                 Authentication auth = jwtService.getAuthentication(jwtToken);
                 if (auth != null) {
                     SecurityContextHolder.getContext().setAuthentication(auth);
-
+                    logger.info("Set Authentication to SecurityContext " + auth.getName());
+                } else {
+                    logger.error("Authentication is null");
                 }
+            } else  {
+                logger.info("JWT Token is null or invalid");
             }
         } catch (JwtException e) {
             logger.error("JWT validation failed: " + e.getMessage());
-            SecurityContextHolder.clearContext(); // Đảm bảo không để lại trạng thái xác thực
+            //SecurityContextHolder.clearContext(); // Đảm bảo không để lại trạng thái xác thực
         }
 
         //tiep tuc chuoi filter

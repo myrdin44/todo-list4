@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.example.todolist.service.UserServiceTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.471 s -- in org.example.todolist.service.UserServiceTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.422 s -- in org.example.todolist.service.UserServiceTest

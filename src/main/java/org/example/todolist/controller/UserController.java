@@ -68,7 +68,7 @@ public class UserController {
 
     //get all users in database, split into pages
     @GetMapping("/get-all-user")
-    public Page<User> getAllUser(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "9") int size) {
+    public Page<User> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "9") int size) {
         return userService.getAllUsers(page, size);
     }
 
@@ -82,7 +82,11 @@ public class UserController {
         }
 
         User user = userService.getUserByUserName(userDetails.getUsername());
-        return ResponseEntity.ok().body(user);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
 
     //search users by their name

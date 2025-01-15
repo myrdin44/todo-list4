@@ -5,6 +5,8 @@ import org.example.todolist.Enum.FacultyOrDepartment;
 import org.example.todolist.model.User;
 import org.example.todolist.repository.UserRepository;
 import org.example.todolist.security.CustomUserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
     @Autowired
     private UserRepository userRepository;
 
@@ -102,6 +105,7 @@ public class UserService {
     //
     public UserDetails getLoggedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.info("Logged user: {}", authentication);
         if (authentication == null || !authentication.isAuthenticated()) {
             return null;
         }
@@ -109,6 +113,7 @@ public class UserService {
         if (authentication.getPrincipal() instanceof CustomUserDetails) {
             return (UserDetails) authentication.getPrincipal();
         }
+        log.warn("Authentication principal is not an instance of CustomUserDetails");
         return null;
     }
 

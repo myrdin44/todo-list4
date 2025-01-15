@@ -105,10 +105,14 @@ public class UserServiceTest {
         User user3 = new User(3L, "testUser3", "testmail3@test.com", "password3", "user3", "Test User Name 3", "+842659214463", FacultyOrDepartment.Mathematics, true, DegreeName.Doctoral, "Biology", 4);
 
         Pageable pageable = PageRequest.of(0, 3, Sort.by("fullName").ascending());
-        when(userRepository.filterByFullName(any(String.class), any(Pageable.class))).thenReturn(new PageImpl<>(List.of(user1, user2, user3), pageable, 3));
+        PageImpl<User> userPage = new PageImpl<>(List.of(user2), pageable, 3);
+        when(userRepository.filterByFullName("testUser2", pageable)).thenReturn(userPage);
         //act
-
+        Page<User> returnPage = userService.filterUserByName("testUser2", 0, 3);
         //assert
+        Assertions.assertNotNull(returnPage);
+        Assertions.assertEquals(userPage.getTotalElements(),returnPage.getTotalElements());
+        Assertions.assertEquals(userPage.getContent(),returnPage.getContent());
     }
 
 }

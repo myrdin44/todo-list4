@@ -1,4 +1,4 @@
-# Created at 2025-01-15T16:58:58.043
+# Created at 2025-01-15T17:18:29.562
 Boot Manifest-JAR contains absolute paths in classpath 'F:\Inteliji\TodoList\target\test-classes'
 Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
 'other' has different root

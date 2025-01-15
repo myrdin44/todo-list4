@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -99,13 +100,21 @@ public class UserService {
     }
 
     //
-    public CustomUserDetails getLoggedUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof CustomUserDetails) {
-            return (CustomUserDetails) principal;
+    public UserDetails getLoggedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return null;
         }
 
+        if (authentication.getPrincipal() instanceof CustomUserDetails) {
+            return (UserDetails) authentication.getPrincipal();
+        }
         return null;
+    }
+
+    //get user by their name
+    public User getUserByUserName(String username) {
+        return userRepository.findByUsername(username);
     }
 
     //search user by their name

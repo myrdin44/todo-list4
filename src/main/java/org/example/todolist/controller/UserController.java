@@ -1,6 +1,5 @@
 package org.example.todolist.controller;
 import org.example.todolist.model.User;
-import org.example.todolist.security.CustomUserDetails;
 import org.example.todolist.security.JwtException;
 import org.example.todolist.security.JwtService;
 import org.example.todolist.service.UserService;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -68,20 +68,20 @@ public class UserController {
 
     //get all users in database, split into pages
     @GetMapping("/get-all-user")
-    public Page<User> getAllUser(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "14") int size) {
+    public Page<User> getAllUser(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "9") int size) {
         return userService.getAllUsers(page, size);
     }
 
     //get
     @GetMapping("/current-info")
     public ResponseEntity<?> getCurrentUserInfo() {
-        CustomUserDetails userDetails = userService.getLoggedUser();
+        UserDetails userDetails = userService.getLoggedUser();
 
         if (userDetails == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No user logged in.");
         }
 
-        User user = userService.getUserById(userDetails.getUserId());
+        User user = userService.getUserByUserName(userDetails.getUsername());
         return ResponseEntity.ok().body(user);
     }
 

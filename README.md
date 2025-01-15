@@ -16,6 +16,6 @@
 * >> cd todo-list4
 
 ## 4.Công nghệ sử dụng 🌐
-* Frontend : ReactJs, 
-* Backend: Java Spring Boot, JPA Data, PosgreSQL...
-* Kiểm thử: Postman, Mockito,.
+* Frontend : ReactJs,.
+* Backend: Java Spring Boot 3+, Spring Data JPA (Hibernate), PosgreSQL, Maven, Tomcat,.
+* Kiểm thử: Postman, Unit Test,.

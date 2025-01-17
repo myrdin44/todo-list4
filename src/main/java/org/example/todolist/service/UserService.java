@@ -18,7 +18,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,25 +52,23 @@ public class UserService {
     public User updateUser(long userId, User newUser) {
         if (userRepository.existsById(userId)) {
             User user = userRepository.findById(userId).orElse(null);
-            assert user != null;
-            user.setUsername(newUser.getUsername());
-            user.setPassword(newUser.getPassword());
-            user.setEmail(newUser.getEmail());
-            user.setFullName(newUser.getFullName());
-            user.setPhone(newUser.getPhone());
-            user.setRole(newUser.getRole());
-            try {
-                FacultyOrDepartment faculty = newUser.getFacultyOrDepartment();
-                user.setFacultyOrDepartment(faculty);
-            } catch (IllegalArgumentException e) {
-                throw new InputMismatchException("Invalid faculty or department value.");
-            }
-            user.setSubject(newUser.getSubject());
-            user.setSystemLevel(newUser.getSystemLevel());
-            user.setStatus(newUser.getStatus());
-            user.setDegreeName(newUser.getDegreeName());
+                if (user != null) {
+                    user.setPassword(newUser.getPassword());
+                    user.setEmail(newUser.getEmail());
+                    user.setFullName(newUser.getFullName());
+                    user.setPhone(newUser.getPhone());
+                    user.setRole(newUser.getRole());
+                    FacultyOrDepartment faculty = newUser.getFacultyOrDepartment();
+                    user.setFacultyOrDepartment(faculty);
+                    user.setSubject(newUser.getSubject());
+                    user.setSystemLevel(newUser.getSystemLevel());
+                    user.setStatus(newUser.getStatus());
+                    user.setDegreeName(newUser.getDegreeName());
 
-            return userRepository.save(user);
+                    return userRepository.save(user);
+                }
+                return null;
+
         }
         return null;
     }

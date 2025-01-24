@@ -96,7 +96,7 @@ public class UserService {
     //get all users in database
     public Page<User> getAllUsers(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("fullName").ascending());
-        return userRepository.findAllUser(pageable);
+        return userRepository.findAll(pageable);
     }
 
     //

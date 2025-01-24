@@ -88,7 +88,7 @@ public class UserServiceTest {
         Pageable pageable = PageRequest.of(0, 3, Sort.by("fullName").ascending());
         List<User> userList = List.of(user1, user2, user3);
         Page<User> userPage = new PageImpl<>(userList, pageable, userList.size());
-        when(userRepository.findAllUser(any(Pageable.class))).thenReturn(userPage);
+        when(userRepository.findAll(any(Pageable.class))).thenReturn(userPage);
         //act
         Page<User> returnPage = userService.getAllUsers(0, 3);
         //assert

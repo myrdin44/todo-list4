@@ -8,6 +8,7 @@ org\example\todolist\repository\UserRepository.class
 org\example\todolist\config\WebConfig.class
 org\example\todolist\service\UserService.class
 org\example\todolist\service\IMService.class
+org\example\todolist\config\OpenAPIConfig.class
 org\example\todolist\exception\GlobalExceptionHandle.class
 org\example\todolist\Enum\FacultyOrDepartment.class
 org\example\todolist\repository\TodoRepository.class
